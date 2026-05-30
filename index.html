@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵阳市第三实验中学 — 吉祥物及文创作品征集</title>
+    <style>
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+            color: #333;
+            background: #f5f3ef;
+            line-height: 1.7;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========== Top Bar ========== */
+        .top-bar {
+            background: #7a1e1e;
+            color: #fff;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            letter-spacing: 1px;
+        }
+
+        /* ========== Header ========== */
+        .header {
+            background: linear-gradient(180deg, #fff 0%, #fdfaf5 100%);
+            padding: 18px 0 14px;
+            text-align: center;
+            border-bottom: 3px solid #c9a84c;
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            padding: 0 20px;
+        }
+        .school-logo {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,.08);
+            /* 校徽来源：学校官网 www.gysysz.cn */
+        }
+        .school-name h1 {
+            font-size: 1.75rem;
+            color: #5c1414;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .school-name .sub {
+            font-size: 0.9rem;
+            color: #8b6914;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* ========== Nav ========== */
+        .nav {
+            background: #5c1414;
+            text-align: center;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,.15);
+        }
+        .nav a {
+            display: inline-block;
+            color: #f0d78c;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: all .25s;
+        }
+        .nav a:hover { background: #7a1e1e; color: #fff; }
+
+        /* ========== Hero ========== */
+        .hero {
+            background: linear-gradient(135deg, #5c1414 0%, #8b2a2a 40%, #a87a2e 100%);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px 90px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 280px; height: 280px;
+            border: 2px solid rgba(255,255,255,.08);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 200px; height: 200px;
+            border: 2px solid rgba(255,255,255,.06);
+            border-radius: 50%;
+        }
+        .hero h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #f0d78c;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .countdown {
+            margin-top: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-box {
+            display: inline-flex;
+            gap: 16px;
+        }
+        .countdown-item {
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 10px;
+            padding: 12px 18px;
+            min-width: 70px;
+        }
+        .countdown-item .num {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .countdown-item .label {
+            font-size: 0.75rem;
+            color: #f0d78c;
+            margin-top: 4px;
+        }
+
+        /* ========== Section Common ========== */
+        .section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+        .section-title h3 {
+            font-size: 1.8rem;
+            color: #5c1414;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+        .section-title h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #c9a84c;
+            border-radius: 2px;
+        }
+
+        /* ========== About / Intro ========== */
+        .intro-text {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 2;
+        }
+
+        /* ========== Cards ========== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,.05);
+            text-align: center;
+            transition: transform .3s, box-shadow .3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,.1);
+        }
+        .card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 14px;
+        }
+        .card h4 {
+            font-size: 1.15rem;
+            color: #5c1414;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .card p {
+            font-size: 0.92rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* ========== Timeline ========== */
+        .timeline {
+            position: relative;
+            padding-left: 36px;
+            border-left: 3px solid #c9a84c;
+            margin-left: 10px;
+        }
+        .timeline-item {
+            margin-bottom: 36px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -46px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: #c9a84c;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #c9a84c;
+        }
+        .timeline-item .date {
+            font-size: 0.85rem;
+            color: #8b6914;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .timeline-item h4 {
+            font-size: 1.1rem;
+            color: #5c1414;
+            margin: 4px 0 6px;
+        }
+        .timeline-item p {
+            font-size: 0.92rem;
+            color: #666;
+        }
+
+        /* ========== Requirements Table ========== */
+        .req-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0,0,0,.05);
+        }
+        .req-table th, .req-table td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .req-table th {
+            background: #5c1414;
+            color: #f0d78c;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+        .req-table td {
+            font-size: 0.92rem;
+            color: #555;
+        }
+        .req-table tr:last-child td { border-bottom: none; }
+        .req-table .label-col {
+            font-weight: 700;
+            color: #5c1414;
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        /* ========== Awards ========== */
+        .award-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .award-card {
+            background: linear-gradient(135deg, #fffdf5 0%, #fff 100%);
+            border: 2px solid #e8d48b;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: transform .3s;
+        }
+        .award-card:hover { transform: translateY(-4px); }
+        .award-card .medal {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+        .award-card h4 {
+            font-size: 1.2rem;
+            color: #5c1414;
+            letter-spacing: 1px;
+        }
+        .award-card .prize {
+            font-size: 0.9rem;
+            color: #8b6914;
+            margin-top: 4px;
+        }
+        .award-card p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* ========== Submission Method ========== */
+        .submit-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 36px 28px;
+            box-shadow: 0 2px 16px rgba(0,0,0,.05);
+            text-align: center;
+        }
+        .submit-box .email {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5c1414;
+            letter-spacing: 1px;
+            word-break: break-all;
+        }
+        .submit-box .qrcode-placeholder {
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            line-height: 140px;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background: #3a0d0d;
+            color: #ccc;
+            text-align: center;
+            padding: 36px 20px 28px;
+            font-size: 0.88rem;
+            line-height: 2;
+        }
+        .footer strong { color: #f0d78c; }
+        .footer a { color: #f0d78c; text-decoration: underline; }
+
+        /* ========== Scroll-to-top ========== */
+        .back-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: #5c1414;
+            color: #f0d78c;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,.25);
+            display: none;
+            z-index: 999;
+            transition: opacity .3s;
+        }
+        .back-top.show { display: block; }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 640px) {
+            .header-inner { flex-direction: column; gap: 10px; }
+            .hero h2 { font-size: 1.7rem; letter-spacing: 2px; }
+            .hero .subtitle { font-size: 0.95rem; }
+            .section { padding: 40px 16px; }
+            .section-title h3 { font-size: 1.4rem; }
+            .countdown-item { padding: 8px 12px; min-width: 54px; }
+            .countdown-item .num { font-size: 1.4rem; }
+            .nav a { padding: 10px 14px; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======== 顶部通知 ======== -->
+<div class="top-bar">
+    📢 贵阳市第三实验中学 · 吉祥物及校园文创作品征集活动火热进行中！
+</div>
+
+<!-- ======== 头部：校徽 + 校名 ======== -->
+<header class="header">
+    <div class="header-inner">
+        <!-- 校徽：来源于学校官网 www.gysysz.cn -->
+        <img class="school-logo"
+             src="https://www.gysysz.cn/favicon.ico"
+             alt="贵阳市第三实验中学 校徽"
+             onerror="this.style.display='none'"
+             loading="lazy">
+        <div class="school-name">
+            <h1>贵阳市第三实验中学</h1>
+            <div class="sub">Guiyang No.3 Experimental Middle School</div>
+        </div>
+    </div>
+</header>
+
+<!-- ======== 导航栏 ======== -->
+<nav class="nav" id="nav">
+    <a href="#home">🏠 首页</a>
+    <a href="#about">📖 活动简介</a>
+    <a href="#categories">🎨 征集类别</a>
+    <a href="#schedule">📅 时间安排</a>
+    <a href="#requirements">📋 作品要求</a>
+    <a href="#awards">🏆 奖项设置</a>
+    <a href="#submit">📮 投稿方式</a>
+</nav>
+
+<!-- ======== Hero：主题大图 ======== -->
+<section class="hero" id="home">
+    <h2>🐉 吉祥物及文创作品征集</h2>
+    <p class="subtitle">创想青春 · 绘就校园文化新符号</p>
+    <div class="countdown">
+        <div class="countdown-box" id="countdown">
+            <div class="countdown-item">
+                <div class="num" id="cd-days">00</div>
+                <div class="label">天</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="cd-hours">00</div>
+                <div class="label">时</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="cd-mins">00</div>
+                <div class="label">分</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="cd-secs">00</div>
+                <div class="label">秒</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======== 活动简介 / 学校介绍 ======== -->
+<section class="section" id="about">
+    <div class="section-title"><h3>📖 活动简介</h3></div>
+    <div class="intro-text">
+        <p>
+            贵阳市第三实验中学创建于<strong>2004年</strong>，是<strong>贵州省一类示范性普通高中</strong>，
+            坐落于贵阳市云岩区东山扶风路168号，占地112亩，是一所全封闭寄宿制公办独立高中。
+            学校秉承<strong>"刚健自强，止于至善"</strong>的校训，
+            以<strong>"为者常成，行者常至"</strong>为办学理念，
+            致力于培养具有爱国情怀、品德高尚、人文素养厚重、科学思维突出、具有创新合作能力与国际视野的优秀人才。
+        </p>
+        <p style="margin-top:16px;">
+            为进一步丰富校园文化内涵，展现实验三中学子的创造力与青春风采，
+            现面向<strong>全校师生、校友及社会各界</strong>公开征集
+            <strong style="color:#5c1414;">校园吉祥物形象设计</strong>及
+            <strong style="color:#8b6914;">校园文创作品</strong>。
+            期待你的灵感与才华，为实验三中留下独一无二的文化印记！
+        </p>
+    </div>
+</section>
+
+<!-- ======== 征集类别 ======== -->
+<section class="section" id="categories" style="background:#fdfaf5;">
+    <div class="section-title"><h3>🎨 征集类别</h3></div>
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon">🧸</div>
+            <h4>校园吉祥物设计</h4>
+            <p>
+                设计一个能够代表实验三中精神与气质的吉祥物形象。
+                要求造型简洁、寓意深刻、亲切可爱，适合在各类校园场景中应用。
+            </p>
+        </div>
+        <div class="card">
+            <div class="icon">📓</div>
+            <h4>文具用品设计</h4>
+            <p>
+                笔记本、书签、笔袋、文件夹、明信片等学习用品。
+                融入学校标志性元素（校徽、校训、建筑等）。
+            </p>
+        </div>
+        <div class="card">
+            <div class="icon">👕</div>
+            <h4>服饰配饰设计</h4>
+            <p>
+                校园文化衫、卫衣、帆布包、徽章、钥匙扣等日常穿戴用品。
+                兼具美观性与实用性。
+            </p>
+        </div>
+        <div class="card">
+            <div class="icon">🏠</div>
+            <h4>生活用品设计</h4>
+            <p>
+                水杯、雨伞、手机壳、贴纸、抱枕等生活周边产品。
+                让校园文化融入日常生活。
+            </p>
+        </div>
+        <div class="card">
+            <div class="icon">🎁</div>
+            <h4>礼品礼盒设计</h4>
+            <p>
+                校园伴手礼、节庆礼盒、毕业纪念品等。
+                承载实验三中独有的情感与回忆。
+            </p>
+        </div>
+        <div class="card">
+            <div class="icon">💡</div>
+            <h4>其他创意作品</h4>
+            <p>
+                数字文创（表情包、壁纸等）、手工艺品等。
+                任何能体现实验三中文化特色的创意作品均可投稿。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ======== 时间安排 ======== -->
+<section class="section" id="schedule">
+    <div class="section-title"><h3>📅 时间安排</h3></div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="date">即日起 — 2026年7月15日</div>
+            <h4>作品征集阶段</h4>
+            <p>通过电子邮件提交设计稿及作品说明。</p>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2026年7月16日 — 7月25日</div>
+            <h4>初评阶段</h4>
+            <p>由学校美术教研组及学生会代表进行初步筛选。</p>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2026年7月26日 — 8月5日</div>
+            <h4>网络投票 + 专家评审</h4>
+            <p>入围作品将在学校官方微信公众号展示并进行网络投票；同时由专家评审团进行专业打分。</p>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2026年8月中旬</div>
+            <h4>结果公示</h4>
+            <p>综合网络投票（占30%）与专家评分（占70%），确定最终获奖名单并公示。</p>
+        </div>
+        <div class="timeline-item">
+            <div class="date">2026年9月（开学典礼）</div>
+            <h4>颁奖 & 文创发布</h4>
+            <p>在开学典礼上举行颁奖仪式，优秀作品将制作成正式校园文创产品。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======== 作品要求 ======== -->
+<section class="section" id="requirements" style="background:#fdfaf5;">
+    <div class="section-title"><h3>📋 作品要求</h3></div>
+    <table class="req-table">
+        <thead>
+            <tr>
+                <th style="width:30%;">项目</th>
+                <th>具体要求</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="label-col">🎯 主题契合</td>
+                <td>作品需体现贵阳市第三实验中学校园文化特色，可融入校训"刚健自强，止于至善"、校徽元素、校园标志性建筑等。</td>
+            </tr>
+            <tr>
+                <td class="label-col">🎨 原创性</td>
+                <td>作品必须为<strong>原创</strong>，不得抄袭或侵犯他人知识产权。如有侵权行为，由投稿者自行承担法律责任。</td>
+            </tr>
+            <tr>
+                <td class="label-col">📐 格式要求</td>
+                <td>
+                    吉祥物设计：需提交三视图（正面、侧面、背面），A4幅面，分辨率不低于300dpi，附设计说明（300字以内）。<br>
+                    文创设计：需提交效果图及简要设计说明，格式为JPG/PNG/PDF，单张不超过10MB。
+                </td>
+            </tr>
+            <tr>
+                <td class="label-col">📝 提交内容</td>
+                <td>设计稿文件 + 作品名称 + 设计理念说明 + 作者姓名/班级/联系方式。</td>
+            </tr>
+            <tr>
+                <td class="label-col">👥 参与对象</td>
+                <td>全校师生、校友及关心学校发展的社会各界人士均可参加。个人或团队（不超过3人）均可投稿。</td>
+            </tr>
+            <tr>
+                <td class="label-col">📊 评选标准</td>
+                <td>主题契合度（30%）、创意与美感（30%）、实用性与可落地性（20%）、文化内涵（20%）。</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ======== 奖项设置 ======== -->
+<section class="section" id="awards">
+    <div class="section-title"><h3>🏆 奖项设置</h3></div>
+    <div class="award-list">
+        <div class="award-card">
+            <div class="medal">🥇</div>
+            <h4>一等奖</h4>
+            <div class="prize">吉祥物 & 文创各 1 名</div>
+            <p>奖金 2000 元 + 荣誉证书<br>+ 全套文创礼盒</p>
+        </div>
+        <div class="award-card">
+            <div class="medal">🥈</div>
+            <h4>二等奖</h4>
+            <div class="prize">各 3 名</div>
+            <p>奖金 800 元 + 荣誉证书<br>+ 文创礼盒</p>
+        </div>
+        <div class="award-card">
+            <div class="medal">🥉</div>
+            <h4>三等奖</h4>
+            <div class="prize">各 5 名</div>
+            <p>奖金 300 元 + 荣誉证书<br>+ 文创单品</p>
+        </div>
+        <div class="award-card">
+            <div class="medal">🌟</div>
+            <h4>网络人气奖</h4>
+            <div class="prize">若干名</div>
+            <p>荣誉证书 + 文创礼盒</p>
+        </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;color:#888;font-size:0.88rem;">
+        ※ 获奖作品将有机会被制作成学校官方文创产品，设计者姓名将永久标注在产品上。
+    </p>
+</section>
+
+<!-- ======== 投稿方式 ======== -->
+<section class="section" id="submit" style="background:#fdfaf5;">
+    <div class="section-title"><h3>📮 投稿方式</h3></div>
+    <div class="submit-box">
+        <p style="font-size:1.05rem;color:#555;margin-bottom:12px;">📧 请将作品发送至征集专用邮箱：</p>
+        <div class="email">wczj@gysysz.cn</div>
+        <p style="margin-top:16px;color:#888;font-size:0.9rem;">
+            邮件主题格式：【吉祥物/文创征集】+ 作品名称 + 作者姓名<br>
+            如需咨询，请联系校团委：<strong>0851-88640304</strong>（转团委）
+        </p>
+        <p style="margin-top:12px;color:#888;font-size:0.9rem;">
+            或关注学校官方微信公众号<br>
+            <strong style="color:#5c1414;">"贵阳市第三实验中学"</strong><br>
+            获取活动最新动态
+        </p>
+    </div>
+</section>
+
+<!-- ======== 页脚 ======== -->
+<footer class="footer">
+    <p>
+        <strong>贵阳市第三实验中学</strong> &nbsp;|&nbsp;
+        校训：刚健自强 · 止于至善
+    </p>
+    <p>
+        📍 贵州省贵阳市云岩区东山扶风路168号 &nbsp;|&nbsp;
+        📞 0851-88640304
+    </p>
+    <p>
+        官方网站：<a href="https://www.gysysz.cn" target="_blank" rel="noopener">www.gysysz.cn</a>
+        &nbsp;|&nbsp;
+        黔ICP备19009545号
+    </p>
+    <p style="margin-top:8px;color:#888;">
+        © 2026 贵阳市第三实验中学 · 吉祥物及文创征集活动组委会
+    </p>
+</footer>
+
+<!-- ======== 回到顶部按钮 ======== -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">⬆</button>
+
+<script>
+    /* ========== 倒计时（截止日期：2026-07-15 23:59:59） ========== */
+    const deadline = new Date("2026-07-15T23:59:59").getTime();
+    function updateCountdown() {
+        const now = Date.now();
+        let diff = deadline - now;
+        if (diff <= 0) {
+            document.getElementById("countdown").innerHTML =
+                '<div class="countdown-item" style="border-color:#f0d78c;"><div class="num" style="font-size:1.3rem;">征集已截止</div><div class="label">感谢参与！</div></div>';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById("cd-days").textContent = String(d).padStart(2, "0");
+        document.getElementById("cd-hours").textContent = String(h).padStart(2, "0");
+        document.getElementById("cd-mins").textContent = String(m).padStart(2, "0");
+        document.getElementById("cd-secs").textContent = String(s).padStart(2, "0");
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ========== 回到顶部按钮显隐 ========== */
+    const backTopBtn = document.getElementById("backTop");
+    window.addEventListener("scroll", () => {
+        backTopBtn.classList.toggle("show", window.scrollY > 400);
+    });
+</script>
+
+</body>
+</html>

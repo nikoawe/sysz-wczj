@@ -1,0 +1,3 @@
+# Exclude unrelated files
+Git-*.exe
+cc/
